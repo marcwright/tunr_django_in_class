@@ -22,6 +22,17 @@ def artist_create(request):
         form = ArtistForm()
     return render(request, 'tunr/artist_form.html', {'form': form})
 
+def artist_edit(request, pk):
+    artist = Artist.objects.get(pk=pk)
+    if request.method == "POST":
+        form = ArtistForm(request.POST, instance=artist)
+        if form.is_valid():
+            artist = form.save()
+            return redirect('artist_detail', pk=artist.pk)
+    else:
+        form = ArtistForm(instance=artist)
+    return render(request, 'tunr/artist_form.html', {'form': form})
+
 def song_list(request):
     songs = Song.objects.all()
     return render(request, 'tunr/song_list.html', {'songs': songs})
@@ -38,4 +49,16 @@ def song_create(request):
             return redirect('song_detail', pk=song.pk)
     else:
         form = SongForm()
+    return render(request, 'tunr/song_form.html', {'form': form})
+
+
+def song_edit(request, pk):
+    song = Song.objects.get(pk=pk)
+    if request.method == "POST":
+        form = SongForm(request.POST, instance=song)
+        if form.is_valid():
+            artist = form.save()
+            return redirect('song_detail', pk=song.pk)
+    else:
+        form = SongForm(instance=song)
     return render(request, 'tunr/song_form.html', {'form': form})
