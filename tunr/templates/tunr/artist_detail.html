@@ -5,6 +5,9 @@
 <h2>
   {{ artist.name }} <a href="{% url 'artist_edit' pk=artist.pk %}">(edit)</a>
 </h2>
+<div>
+  <a href="{% url 'artist_delete' pk=artist.pk %}">DELETE</a>
+</div>
 <h4>{{ artist.nationality }}</h4>
 
 <img src="{{ artist.photo_url }}" alt="" class="artist-photo" />
