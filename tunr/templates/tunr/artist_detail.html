@@ -1,9 +1,13 @@
+{% extends 'tunr/base.html' %}
+
+{% block content %}
+
 <h2>{{ artist.name }} <a href="">(edit)</a></h2>
 <h4>{{ artist.nationality }}</h4>
 
 <img src="{{ artist.photo_url }}" alt="" class="artist-photo" />
 
-<h3>Songs <a href="">(+)</a></h3>
+<h3>Songs <a href="{% url 'song_create' %}">(+)</a></h3>
 <ul>
   {% for song in artist.songs.all %}
   <li>
@@ -13,3 +17,4 @@
   </li>
   {% endfor %}
 </ul>
+{% endblock %}
