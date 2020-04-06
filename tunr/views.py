@@ -70,3 +70,17 @@ def song_edit(request, pk):
 def song_delete(request, pk):
     Song.objects.get(id=pk).delete()
     return redirect('song_list')
+
+
+def song_create_artist(request, pk):
+    print(request)
+    print(pk)
+    if request.method == 'POST':
+        form = SongForm(request.POST)
+        if form.is_valid():
+            song = form.save()
+            print(form)
+            return redirect('song_detail', pk=song.pk)
+    else:
+        form = SongForm()
+    return render(request, 'tunr/song_form.html', {'form': form})

@@ -12,7 +12,7 @@
 
 <img src="{{ artist.photo_url }}" alt="" class="artist-photo" />
 
-<h3>Songs <a href="{% url 'song_create' %}">(+)</a></h3>
+<h3>Songs <a href="{% url 'song_create_artist'  pk=artist.pk %}">(+)</a></h3>
 <ul>
   {% for song in artist.songs.all %}
   <li>
